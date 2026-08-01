@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Crop Information</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Selected Crop</h2>
+
+<h1>{{ crop }}</h1>
+
+<hr>
+
+<h2>🤖 AI Recommendation</h2>
+
+<p><b>🌱 Fertilizer :</b> {{ fertilizer }}</p>
+
+<p><b>💧 Irrigation :</b> {{ irrigation }}</p>
+
+<p><b>🌦 Best Season :</b> {{ season }}</p>
+
+</div>
+
+</body>
+
+</html>

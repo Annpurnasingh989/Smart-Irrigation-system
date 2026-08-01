@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Farmer Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <div class="navbar">
+
+    <div class="logo">
+        🌱 Smart Irrigation System
+    </div>
+
+    <div class="menu">
+        <a href="/dashboard">Home</a>
+        <a href="/weather">Weather</a>
+        <a href="/speak">AI Assistant</a>
+        <a href="/">Logout</a>
+    </div>
+
+</div>
+
+<h1>🌱 Farmer Dashboard</h1>
+<p id="datetime"></p>
+
+<div class="card">
+
+<h2>🙏 Welcome {{ name }} 👨‍🌾</h2>
+
+<p>Login Successful ✅</p>
+
+<h3>🌦️ Live Weather</h3>
+<div id="weatherIcon" style="font-size:70px;">
+☀️
+</div>
+
+<div class="weather-cards">
+
+    <div class="weather-card">
+        🌡️
+        <h3>{{ temperature }} °C</h3>
+        <p>Temperature</p>
+    </div>
+
+    <div class="weather-card">
+        💧
+        <h3>{{ humidity }} %</h3>
+        <p>Humidity</p>
+    </div>
+
+    <div class="weather-card">
+        ☁️
+        <h3>{{ weather }}</h3>
+        <p>Weather</p>
+    </div>
+    <div class="weather-cards">
+
+    <div class="weather-card">
+        🌱
+        <h3>62 %</h3>
+        <p>Soil Moisture</p>
+    </div>
+
+    <div class="weather-card">
+        🚰
+        <h3>ON</h3>
+        <p>Irrigation</p>
+    </div>
+
+    <div class="weather-card">
+        🌾
+        <h3>Healthy</h3>
+        <p>Crop Status</p>
+    </div>
+
+</div>
+
+</div>
+
+<h3>🤖 AI Advice</h3>
+
+<p>{{ advice }}</p>
+<h3>💧 Soil Moisture</h3>
+
+<progress value="65" max="100" style="width:250px;height:25px;"></progress>
+
+<p>65% Moisture Available</p>
+
+<hr>
+
+<form action="/crop" method="POST">
+
+<select name="crop">
+
+<option value="Wheat">🌾 Wheat</option>
+
+<option value="Rice">🌾 Rice</option>
+
+<option value="Maize">🌽 Maize</option>
+
+<option value="Potato">🥔 Potato</option>
+
+</select>
+
+<br><br>
+
+<img id="cropImage"
+src="{{ url_for('static', filename='images/wheat.png') }}"
+width="180"
+style="border-radius:15px; box-shadow:0 5px 15px gray;">
+
+<br><br>
+
+<button type="submit">Next</button>
+
+</form>
+
+<br><br>
+
+<a href="/speak">
+    <button>🎤 Speak</button>
+</a>
+
+<a href="/weather">
+    <button>🌦️ Weather</button>
+</a>
+
+<button onclick="getLocation()">📍 Location</button>
+
+<a href="/history">
+    <button>📊 Prediction History</button>
+</a>
+
+<a href="/graph">
+    <button>📈 Water Graph</button>
+</a>
+
+<p id="location"></p>
+
+<br><br>
+
+<button onclick="showAdvice()">Get Today's Recommendation</button>
+
+<p id="adviceBox"></p>
+
+</div>
+
+<script>
+
+function getLocation() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            alert(
+                "Latitude: " + position.coords.latitude +
+                "\nLongitude: " + position.coords.longitude
+            );
+
+        });
+
+    } else {
+
+        alert("Location is not supported.");
+
+    }
+
+}
+
+function showAdvice() {
+
+    document.getElementById("adviceBox").innerHTML =
+    "🌱 Aaj 20-30 minute sinchai karein. Mausam theek hai aur mitti me nami kam hai.";
+
+}
+const cropSelect = document.querySelector("select[name='crop']");
+const cropImage = document.getElementById("cropImage");
+
+cropSelect.addEventListener("change", function(){
+
+    let crop = this.value.toLowerCase();
+
+    cropImage.src = "/static/images/" + crop + ".png";
+
+});
+function updateTime() {
+    const now = new Date();
+
+    document.getElementById("datetime").innerHTML =
+        "📅 " + now.toLocaleDateString() +
+        " | 🕒 " + now.toLocaleTimeString();
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+
+let weather = "{{ weather }}";
+
+if (weather.includes("Cloud")) {
+    document.getElementById("weatherIcon").innerHTML = "☁️";
+}
+else if (weather.includes("Rain")) {
+    document.getElementById("weatherIcon").innerHTML = "🌧️";
+}
+else if (weather.includes("Clear")) {
+    document.getElementById("weatherIcon").innerHTML = "☀️";
+}
+else {
+    document.getElementById("weatherIcon").innerHTML = "🌍";
+}
+</script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

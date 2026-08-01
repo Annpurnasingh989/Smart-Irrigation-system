@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        table{
+            width:90%;
+            margin:30px auto;
+            border-collapse:collapse;
+            background:white;
+            box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+
+        th{
+            background:green;
+            color:white;
+        }
+
+        h1{
+            text-align:center;
+            margin-top:30px;
+        }
+
+        .back-btn{
+            display:block;
+            width:180px;
+            margin:20px auto;
+            text-align:center;
+            background:green;
+            color:white;
+            padding:12px;
+            text-decoration:none;
+            border-radius:10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>📊 Prediction History</h1>
+
+<table>
+
+<tr>
+    <th>Crop</th>
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Water Required</th>
+</tr>
+
+{% for p in predictions %}
+
+<tr>
+
+<td>{{ p.crop }}</td>
+
+<td>{{ p.temperature }} °C</td>
+
+<td>{{ p.humidity }} %</td>
+
+<td>{{ p.water_required }} Liters</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/dashboard" class="back-btn">⬅ Back to Dashboard</a>
+
+</body>
+</html>

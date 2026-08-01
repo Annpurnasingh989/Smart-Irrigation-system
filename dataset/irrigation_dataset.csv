@@ -1,0 +1,13 @@
+Temperature,Humidity,Crop,WaterRequired
+30,60,Wheat,20
+32,65,Wheat,25
+35,70,Rice,40
+34,75,Rice,45
+33,55,Maize,25
+36,50,Maize,30
+25,80,Potato,30
+28,75,Potato,35
+31,60,Wheat,22
+29,68,Rice,38
+34,58,Maize,28
+27,78,Potato,32
