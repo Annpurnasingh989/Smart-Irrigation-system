@@ -1,0 +1,699 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(10, 35, 20, 0.55),
+            rgba(10, 35, 20, 0.65)
+        ),
+        url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1800&q=85");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: white;
+}
+
+.assistant-page {
+    min-height: 100vh;
+    padding: 25px 5%;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.assistant-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 28px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+
+    margin-bottom: 45px;
+}
+
+.assistant-logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.assistant-main {
+    max-width: 1250px;
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+
+/* =========================
+   LEFT INFORMATION
+========================= */
+
+.assistant-info {
+    padding: 20px;
+}
+
+.assistant-tag {
+    display: inline-block;
+
+    padding: 9px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(34, 197, 94, 0.75);
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+.assistant-info h1 {
+    font-size: 58px;
+
+    line-height: 1.1;
+
+    margin-bottom: 25px;
+
+    font-weight: 800;
+}
+
+.assistant-info h1 span {
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        #86efac,
+        #4ade80,
+        #bbf7d0
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.assistant-info > p {
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.85);
+
+    max-width: 570px;
+}
+
+
+/* =========================
+   LANGUAGES
+========================= */
+
+.language-box {
+    margin-top: 30px;
+
+    padding: 18px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.10);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(15px);
+}
+
+.language-box > span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-weight: 600;
+}
+
+.languages {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.languages span {
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    background: rgba(34,197,94,0.25);
+
+    border: 1px solid rgba(134,239,172,0.25);
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.feature-list {
+    margin-top: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.feature-list > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 12px 15px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.08);
+}
+
+.feature-list > div:first-child {
+    font-size: 25px;
+}
+
+.feature-list span {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.feature-list b {
+    font-size: 15px;
+}
+
+.feature-list small {
+    color: rgba(255,255,255,0.65);
+
+    margin-top: 2px;
+}
+
+
+/* =========================
+   CHATBOT CARD
+========================= */
+
+.chatbot-card {
+    height: 680px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 25px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.12);
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow: 0 25px 70px rgba(0,0,0,0.30);
+}
+
+
+/* =========================
+   CHAT HEADER
+========================= */
+
+.chat-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.bot-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.bot-avatar {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 16px;
+
+    background: rgba(34,197,94,0.25);
+
+    font-size: 25px;
+}
+
+.bot-profile h2 {
+    font-size: 19px;
+}
+
+.bot-profile span {
+    font-size: 12px;
+
+    color: #86efac;
+}
+
+.online-dot {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #4ade80;
+
+    margin-right: 4px;
+}
+
+.clear-btn {
+    border: none;
+
+    background: rgba(255,255,255,0.10);
+
+    color: white;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.clear-btn:hover {
+    background: rgba(239,68,68,0.65);
+}
+
+
+/* =========================
+   CHAT MESSAGES
+========================= */
+
+.chat-messages {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 25px 5px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.25);
+
+    border-radius: 10px;
+}
+
+.message {
+    display: flex;
+
+    gap: 10px;
+
+    max-width: 85%;
+}
+
+.message.bot {
+    align-self: flex-start;
+}
+
+.message.user {
+    align-self: flex-end;
+
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(34,197,94,0.25);
+}
+
+.message-bubble {
+    padding: 13px 16px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.10);
+
+    color: white;
+
+    line-height: 1.6;
+}
+
+.message.user .message-bubble {
+    background: linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+
+    border-radius: 18px 18px 4px 18px;
+}
+
+.message-bubble b {
+    color: #86efac;
+
+    font-size: 13px;
+}
+
+.message-bubble p {
+    margin-top: 5px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   VOICE STATUS
+========================= */
+
+.voice-status {
+    text-align: center;
+
+    padding: 8px;
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.chat-input {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.chat-input input {
+    flex: 1;
+
+    height: 50px;
+
+    padding: 0 18px;
+
+    border: 1px solid rgba(255,255,255,0.20);
+
+    border-radius: 16px;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.10);
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.chat-input input::placeholder {
+    color: rgba(255,255,255,0.55);
+}
+
+.mic-button,
+.send-button {
+    width: 50px;
+    height: 50px;
+
+    min-width: 50px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: 0.3s;
+}
+
+.mic-button {
+    background: linear-gradient(
+        135deg,
+        #9333ea,
+        #a855f7
+    );
+}
+
+.send-button {
+    background: linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+}
+
+.mic-button:hover,
+.send-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.mic-button.listening {
+    animation: micPulse 1s infinite;
+    background: #dc2626;
+}
+
+@keyframes micPulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(239,68,68,0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(239,68,68,0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239,68,68,0);
+    }
+
+}
+
+
+/* =========================
+   QUICK QUESTIONS
+========================= */
+
+.quick-questions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 12px;
+}
+
+.quick-questions > span {
+    font-size: 11px;
+
+    color: rgba(255,255,255,0.55);
+}
+
+.quick-questions button {
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background: rgba(255,255,255,0.08);
+
+    color: rgba(255,255,255,0.85);
+
+    border-radius: 15px;
+
+    padding: 6px 10px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.quick-questions button:hover {
+    background: rgba(34,197,94,0.25);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 950px) {
+
+    .assistant-main {
+        grid-template-columns: 1fr;
+
+    }
+
+    .assistant-info {
+        text-align: center;
+    }
+
+    .assistant-info > p {
+        margin: auto;
+    }
+
+    .feature-list {
+        max-width: 500px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        text-align: left;
+    }
+
+    .chatbot-card {
+        height: 650px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .assistant-page {
+        padding: 15px;
+    }
+
+    .assistant-navbar {
+        padding: 14px 16px;
+    }
+
+    .assistant-logo {
+        font-size: 18px;
+    }
+
+    .back-btn {
+        padding: 8px 12px;
+
+        font-size: 12px;
+    }
+
+    .assistant-info h1 {
+        font-size: 40px;
+    }
+
+    .assistant-info > p {
+        font-size: 15px;
+    }
+
+    .chatbot-card {
+        height: 600px;
+
+        padding: 18px;
+
+        border-radius: 22px;
+    }
+
+    .quick-questions button {
+        font-size: 9px;
+    }
+
+}

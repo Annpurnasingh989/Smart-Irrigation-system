@@ -1,35 +1,571 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Farmer Login</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Farmer Login | Smart Irrigation</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Existing CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(0, 40, 20, .55),
+                    rgba(0, 70, 35, .45)
+                ),
+                url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1800&q=90");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+        }
+
+        .glass {
+
+            background: rgba(255, 255, 255, .12);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(255, 255, 255, .22);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, .30);
+
+        }
+
+        .input-box {
+
+            background: rgba(255, 255, 255, .10);
+
+            border: 1px solid rgba(255, 255, 255, .25);
+
+            color: white;
+
+            transition: .3s;
+
+        }
+
+        .input-box:focus {
+
+            outline: none;
+
+            background: rgba(255, 255, 255, .16);
+
+            border-color: #86efac;
+
+            box-shadow:
+                0 0 0 3px rgba(34, 197, 94, .18);
+
+        }
+
+        .input-box::placeholder {
+
+            color: rgba(255, 255, 255, .65);
+
+        }
+
+        .login-btn {
+
+            transition: .3s;
+
+        }
+
+        .login-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(34, 197, 94, .35);
+
+        }
+
+        .back-btn {
+
+            transition: .3s;
+
+        }
+
+        .back-btn:hover {
+
+            transform: translateX(-4px);
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<div class="login-box">
 
-<h2>👨‍🌾 Farmer Login</h2>
+<!-- ================= NAVBAR ================= -->
 
-<form action="/save_farmer" method="POST">
+<nav class="glass w-full">
 
-<input type="text" name="name" placeholder="Enter Your Name" required>
+    <div
+        class="max-w-7xl mx-auto
+               px-6 py-4
+               flex items-center
+               justify-between">
 
-<br><br>
 
-<input type="text" name="mobile" placeholder="Mobile Number" required>
+        <!-- LOGO -->
 
-<br><br>
+        <a href="/"
+           class="flex items-center gap-3
+                  text-white">
 
-<button>Login</button>
+            <div
+                class="w-11 h-11
+                       rounded-xl
+                       bg-green-500/80
+                       flex items-center
+                       justify-center
+                       text-2xl">
 
-</form>
+                🌱
 
-</div>
+            </div>
+
+
+            <div>
+
+                <h1
+                    class="text-xl md:text-2xl
+                           font-bold">
+
+                    Smart Irrigation
+
+                </h1>
+
+                <p
+                    class="text-xs
+                           text-green-100">
+
+                    Intelligent Agriculture
+
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- BACK -->
+
+        <a
+            href="/"
+            class="back-btn
+                   text-white
+                   hover:text-yellow-300">
+
+            <i class="fa-solid fa-arrow-left mr-2"></i>
+
+            Back to Home
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= LOGIN AREA ================= -->
+
+<main
+    class="min-h-[calc(100vh-80px)]
+           flex items-center
+           justify-center
+           px-6 py-12">
+
+
+    <div
+        class="grid
+               lg:grid-cols-2
+               max-w-5xl
+               w-full
+               gap-8
+               items-center">
+
+
+        <!-- ================= LEFT INFO ================= -->
+
+        <div
+            class="text-white
+                   hidden lg:block
+                   px-8">
+
+
+            <span
+                class="inline-block
+                       px-5 py-2
+                       rounded-full
+                       bg-green-500/80
+                       text-sm
+                       font-semibold
+                       mb-6">
+
+                🌱 AI Powered Agriculture
+
+            </span>
+
+
+            <h1
+                class="text-5xl
+                       font-extrabold
+                       leading-tight">
+
+                Smart Farming
+
+                <br>
+
+                <span
+                    class="text-green-300">
+
+                    Starts Here
+
+                </span>
+
+            </h1>
+
+
+            <p
+                class="mt-6
+                       text-lg
+                       text-green-50
+                       leading-8
+                       max-w-lg">
+
+                Login to your Farmer Dashboard
+                and manage irrigation, weather,
+                crop health and AI recommendations
+                from one place.
+
+            </p>
+
+
+            <div
+                class="mt-8
+                       space-y-4">
+
+
+                <div
+                    class="flex items-center
+                           gap-4">
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-white/15
+                               flex items-center
+                               justify-center
+                               text-xl">
+
+                        🌦️
+
+                    </div>
+
+                    <span>
+                        Live Weather Monitoring
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="flex items-center
+                           gap-4">
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-white/15
+                               flex items-center
+                               justify-center
+                               text-xl">
+
+                        💧
+
+                    </div>
+
+                    <span>
+                        Smart Irrigation Prediction
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="flex items-center
+                           gap-4">
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-white/15
+                               flex items-center
+                               justify-center
+                               text-xl">
+
+                        🤖
+
+                    </div>
+
+                    <span>
+                        AI Farming Assistant
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= LOGIN CARD ================= -->
+
+        <div
+            class="glass
+                   rounded-3xl
+                   p-8 md:p-10
+                   w-full
+                   max-w-md
+                   mx-auto">
+
+
+            <!-- ICON -->
+
+            <div
+                class="w-20 h-20
+                       mx-auto
+                       rounded-2xl
+                       bg-green-500/80
+                       flex items-center
+                       justify-center
+                       text-4xl
+                       shadow-lg">
+
+                👨‍🌾
+
+            </div>
+
+
+            <div
+                class="text-center
+                       mt-6">
+
+
+                <h2
+                    class="text-3xl
+                           font-bold
+                           text-white">
+
+                    Farmer Login
+
+                </h2>
+
+
+                <p
+                    class="text-green-100
+                           mt-2">
+
+                    Welcome to Smart Irrigation
+
+                </p>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form
+                action="/save_farmer"
+                method="POST"
+                class="mt-8">
+
+
+                <!-- NAME -->
+
+                <label
+                    class="block
+                           text-white
+                           font-medium
+                           mb-2">
+
+                    <i
+                        class="fa-solid fa-user
+                               mr-2
+                               text-green-300">
+                    </i>
+
+                    Farmer Name
+
+                </label>
+
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                    class="input-box
+                           w-full
+                           px-5 py-4
+                           rounded-xl
+                           mb-5">
+
+
+                <!-- MOBILE -->
+
+                <label
+                    class="block
+                           text-white
+                           font-medium
+                           mb-2">
+
+                    <i
+                        class="fa-solid fa-phone
+                               mr-2
+                               text-green-300">
+                    </i>
+
+                    Mobile Number
+
+                </label>
+
+
+                <input
+                    type="tel"
+                    name="mobile"
+                    placeholder="Enter mobile number"
+                    required
+                    class="input-box
+                           w-full
+                           px-5 py-4
+                           rounded-xl">
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn
+                           w-full
+                           mt-7
+                           py-4
+                           rounded-xl
+                           bg-green-500
+                           hover:bg-green-400
+                           text-white
+                           font-bold
+                           text-lg">
+
+                    <i
+                        class="fa-solid fa-right-to-bracket
+                               mr-2">
+                    </i>
+
+                    Login to Dashboard
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- BOTTOM INFO -->
+
+            <div
+                class="mt-7
+                       pt-6
+                       border-t
+                       border-white/20
+                       text-center">
+
+
+                <p
+                    class="text-sm
+                           text-green-100">
+
+                    🌾 AI Powered
+
+                    <span class="mx-2">
+                        •
+                    </span>
+
+                    💧 Smart Irrigation
+
+                    <span class="mx-2">
+                        •
+                    </span>
+
+                    🌱 Smart Farming
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer
+    class="text-center
+           text-white/60
+           text-sm
+           pb-6">
+
+    © 2026 Smart Irrigation System
+
+</footer>
+
 
 </body>
 

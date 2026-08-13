@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Farmer Assistant</title>
+
+    <!-- Poppins -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Assistant CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/assistant.css') }}">
+
+</head>
+
+<body>
+
+    <div class="assistant-page">
+
+        <!-- NAVBAR -->
+
+        <nav class="assistant-navbar">
+
+            <div class="assistant-logo">
+                🌱 Smart Irrigation
+            </div>
+
+            <a href="/dashboard" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Dashboard
+            </a>
+
+        </nav>
+
+
+        <!-- MAIN -->
+
+        <main class="assistant-main">
+
+            <!-- LEFT INFORMATION -->
+
+            <section class="assistant-info">
+
+                <span class="assistant-tag">
+                    🤖 AI Powered
+                </span>
+
+                <h1>
+                    AI Farmer
+                    <span>Assistant</span>
+                </h1>
+
+                <p>
+                    Ask your farming questions using text or voice.
+                    Our AI assistant can understand your problems
+                    in different languages.
+                </p>
+
+
+                <div class="language-box">
+
+                    <span>🌐 Supported Languages</span>
+
+                    <div class="languages">
+
+                        <span>English</span>
+                        <span>हिन्दी</span>
+                        <span>भोजपुरी</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-list">
+
+                    <div>
+                        🎤
+                        <span>
+                            <b>Voice Search</b>
+                            <small>Speak your farming problem</small>
+                        </span>
+                    </div>
+
+                    <div>
+                        💬
+                        <span>
+                            <b>AI Chat</b>
+                            <small>Ask questions naturally</small>
+                        </span>
+                    </div>
+
+                    <div>
+                        🌾
+                        <span>
+                            <b>Smart Agriculture</b>
+                            <small>Get crop and irrigation advice</small>
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHATBOT -->
+
+            <section class="chatbot-card">
+
+                <!-- CHAT HEADER -->
+
+                <div class="chat-header">
+
+                    <div class="bot-profile">
+
+                        <div class="bot-avatar">
+                            🤖
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Farmer AI
+                            </h2>
+
+                            <span>
+                                <i class="online-dot"></i>
+                                Online
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="clear-btn"
+                        onclick="clearChat()"
+                        title="Clear chat">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHAT MESSAGES -->
+
+                <div
+                    class="chat-messages"
+                    id="chatMessages">
+
+                    <!-- Welcome message -->
+
+                    <div class="message bot">
+
+                        <div class="message-avatar">
+                            🤖
+                        </div>
+
+                        <div class="message-bubble">
+
+                            <b>Farmer AI</b>
+
+                            <p>
+                                Hello {{ name }} 👋
+                                <br><br>
+
+                                Tell me your farming problem.
+                                You can type or speak in
+                                English, Hindi or Bhojpuri.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VOICE STATUS -->
+
+                <div
+                    id="voiceStatus"
+                    class="voice-status">
+
+                    🎤 Click the microphone to speak
+
+                </div>
+
+
+                <!-- INPUT -->
+
+                <div class="chat-input">
+
+    <input
+        type="text"
+        id="farmerMessage"
+        placeholder="Ask your farming problem..."
+    >
+
+    <button
+        type="button"
+        id="micButton"
+        class="mic-button"
+        onclick="startVoiceInput()">
+        🎤
+    </button>
+
+    <button
+        type="button"
+        class="send-button"
+        onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
+
+<div class="voice-status" id="voiceStatus">
+    🎤 Click the microphone to speak
+</div>
+        
+
+
+                <!-- QUICK QUESTIONS -->
+
+                <div class="quick-questions">
+
+                    <span>Try asking:</span>
+
+                    <button onclick="quickMessage('How much water does wheat need?')">
+                        🌾 Wheat irrigation
+                    </button>
+
+                    <button onclick="quickMessage('My plant leaves are turning yellow')">
+                        🍃 Yellow leaves
+                    </button>
+
+                    <button onclick="quickMessage('What should I do if soil moisture is low?')">
+                        💧 Low soil moisture
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- Assistant JavaScript -->
+
+    <script
+        src="{{ url_for('static', filename='js/assistant.js') }}">
+    </script>
+
+</body>
+
+</html>

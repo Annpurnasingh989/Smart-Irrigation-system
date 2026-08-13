@@ -1,221 +1,710 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Farmer Dashboard</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Farmer Dashboard</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- AOS -->
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+          rel="stylesheet">
+
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <!-- Dashboard CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </head>
 
+
 <body>
-    <div class="navbar">
+<div class="page-bg">
+
+    <nav class="navbar glass">
 
     <div class="logo">
+        <i class="fa-solid fa-seedling"></i>
+        Smart Irrigation System
+    </div>
+
+    <ul class="nav-menu">
+
+        <li>
+            <a href="/dashboard">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="/weather">
+                <i class="fa-solid fa-cloud-sun"></i>
+                Weather
+            </a>
+        </li>
+
+        <li>
+            <a href="/leaf">
+                <i class="fa-solid fa-leaf"></i>
+                Leaf AI
+            </a>
+        </li>
+        <li>
+            <a href="/assistant" class="hover:text-yellow-300 transition">
+                <i class="fa-solid fa-robot"></i>
+                AI Assistant
+            </a>
+        </li>
+        <li>
+            <a href="/history">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                History
+            </a>
+        </li>
+
+        <li>
+            <a href="/graph">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </a>
+        </li>
+
+        <li>
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<main class="container">
+
+<section class="hero glass">
+
+    <div class="hero-left">
+
+        <span class="tag">
+            🌱 AI Powered Smart Agriculture
+        </span>
+
+        <h1>
+            <span class="gradient-text">
+            Smart Irrigation System
+            </span>
+        </h1>
+
+        <p class="hero-description">
+
+            👋 Welcome,
+            <span class="username">{{ name }}</span>
+
+            <br><br>
+
+            Experience the future of farming with Artificial Intelligence.
+            Monitor live weather, predict irrigation requirements,
+            detect crop diseases and maximize crop productivity
+            using Smart AI Technology.
+
+        </p>
+
+        <div class="hero-btns">
+
+            <a href="/leaf">
+                <button class="btn green">
+                    <i class="fa-solid fa-leaf"></i>
+                    Detect Disease
+                </button>
+            </a>
+
+            <a href="/weather">
+                <button class="btn weather-btn">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                    Live Weather
+                </button>
+            </a>
+
+            <a href="/graph">
+                <button class="btn blue">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Analytics
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="farmer-card">
+
+            <img
+                src="{{ url_for('static', filename='images/farmer.png') }}"
+                class="farmer-img">
+
+            <div class="floating-card weather">
+                🌤 {{ temperature }}°C
+            </div>
+
+            <div class="floating-card ai">
+                🤖 AI Active
+            </div>
+
+            <div class="floating-card water">
+                💧 {{ avg_water }} L
+            </div>
+
+            <div class="floating-card crop">
+                🌾 Healthy Crop
+            </div>
+
+            <div class="floating-card status">
+                🟢 Live Monitoring
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- WEATHER + AI SECTION -->
+
+<section class="dashboard-grid">
+
+    <!-- LIVE WEATHER -->
+
+    <div class="glass weather-panel">
+
+        <div class="panel-header">
+
+            <h2>🌦 Live Weather</h2>
+
+            <span class="live-dot">● LIVE</span>
+
+        </div>
+
+        <div class="weather-item">
+            <span>🌡 Temperature</span>
+            <strong>{{ temperature }} °C</strong>
+        </div>
+
+        <div class="weather-item">
+            <span>💧 Humidity</span>
+            <strong>{{ humidity }} %</strong>
+        </div>
+
+        <div class="weather-item">
+            <span>☁ Weather</span>
+            <strong>{{ weather }}</strong>
+        </div>
+
+        <div class="weather-item">
+            <span>🌱 Soil Moisture</span>
+            <strong>62 %</strong>
+        </div>
+
+        <div class="weather-item">
+            <span>🚰 Irrigation Pump</span>
+            <strong class="status-on">ON</strong>
+        </div>
+
+    </div>
+
+
+    <!-- AI ADVISOR -->
+    
+    <div class="glass ai-panel">
+
+        <div class="panel-header">
+
+            <h2>🤖 AI Smart Advisor</h2>
+
+            <span class="ai-badge">AI</span>
+
+        </div>
+
+        <div class="recommend-box">
+
+            <div class="recommend-item">
+                ✔ {{ advice }}
+            </div>
+
+            <div class="recommend-item">
+                💧 Water Required :
+                <b>{{ avg_water }} L</b>
+            </div>
+
+            <div class="recommend-item">
+                🌾 Crop Health :
+                <span class="healthy">Excellent</span>
+            </div>
+
+            <div class="recommend-item">
+                📈 AI Confidence :
+                <span class="confidence">98%</span>
+            </div>
+
+            <button class="recommend-btn">
+                🚀 View Recommendation
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+    <!-- SMART CROP SELECTION -->
+
+<section class="crop-section">
+
+    <div class="section-heading">
+
+        <h2>🌾 Smart Crop Selection</h2>
+
+        <p>
+            Select your crop for AI-based irrigation recommendation
+        </p>
+
+    </div>
+
+
+    <div class="crop-grid">
+
+
+        <!-- WHEAT -->
+
+        <div class="crop-card glass">
+
+            <span class="recommend">
+                ⭐ Recommended
+            </span>
+
+            <img
+                src="{{ url_for('static', filename='images/wheat.png') }}"
+                alt="Wheat">
+
+            <h3>Wheat</h3>
+
+            <p>
+                🌱 Medium Water Requirement
+            </p>
+
+            <a href="/crop?crop=Wheat">
+                <button>
+                    Select Crop
+                </button>
+            </a>
+
+        </div>
+
+
+        <!-- RICE -->
+
+        <div class="crop-card glass">
+
+            <img
+                src="{{ url_for('static', filename='images/rice.png') }}"
+                alt="Rice">
+
+            <h3>Rice</h3>
+
+            <p>
+                💧 High Water Requirement
+            </p>
+
+            <a href="/crop?crop=Rice">
+                <button>
+                    Select Crop
+                </button>
+            </a>
+
+        </div>
+
+
+        <!-- MAIZE -->
+
+        <div class="crop-card glass">
+
+            <img
+                src="{{ url_for('static', filename='images/maize.png') }}"
+                alt="Maize">
+
+            <h3>Maize</h3>
+
+            <p>
+                🌿 Low Water Requirement
+            </p>
+
+            <a href="/crop?crop=Maize">
+                <button>
+                    Select Crop
+                </button>
+            </a>
+
+        </div>
+
+
+        <!-- POTATO -->
+
+        <div class="crop-card glass">
+
+            <img
+                src="{{ url_for('static', filename='images/potato.png') }}"
+                alt="Potato">
+
+            <h3>Potato</h3>
+
+            <p>
+                🥔 Disease Detection Enabled
+            </p>
+
+            <a href="/crop?crop=Potato">
+                <button>
+                    Select Crop
+                </button>
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+<!-- SMART FARM STATISTICS -->
+
+<section class="stats-section">
+
+    <div class="section-heading">
+        <h2>📊 Smart Farm Analytics</h2>
+        <p>Real-time insights from your smart irrigation system</p>
+    </div>
+
+    <div class="stats-grid">
+
+        <!-- TOTAL FARMERS -->
+
+        <div class="glass stat-card">
+
+            <div class="stat-icon green-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span>Total Farmers</span>
+
+                <h2>{{ total_farmers }}</h2>
+
+                <small>
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    Active Farmers
+                </small>
+
+            </div>
+
+        </div>
+
+        <!-- PREDICTIONS -->
+
+        <div class="glass stat-card">
+
+            <div class="stat-icon blue-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span>AI Predictions</span>
+
+                <h2>{{ total_predictions }}</h2>
+
+                <small>
+                    <i class="fa-solid fa-robot"></i>
+                    AI Generated
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- WATER -->
+
+        <div class="glass stat-card">
+
+            <div class="stat-icon cyan-icon">
+                <i class="fa-solid fa-droplet"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span>Average Water</span>
+
+                <h2>{{ avg_water }} L</h2>
+
+                <small>
+                    <i class="fa-solid fa-leaf"></i>
+                    Smart Usage
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="glass stat-card">
+
+            <div class="stat-icon orange-icon">
+                <i class="fa-solid fa-temperature-half"></i>
+            </div>
+
+            <div class="stat-content">
+
+                <span>Temperature</span>
+
+                <h2>{{ temperature }}°C</h2>
+
+                <small>
+                    <i class="fa-solid fa-cloud-sun"></i>
+                    Live Weather
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- SMART FARM CONTROLS -->
+
+<section class="quick-section">
+
+    <div class="section-heading">
+        <h2>🚀 Smart Farm Controls</h2>
+        <p>Manage your farm with intelligent tools</p>
+    </div>
+
+    <div class="quick-grid">
+
+        <!-- LOCATION -->
+
+        <div class="glass quick-card">
+
+            <div class="quick-icon">
+                📍
+            </div>
+
+            <h3>Farm Location</h3>
+
+            <p id="location">
+                Detect your current farm location
+            </p>
+
+            <button
+                class="quick-btn green"
+                onclick="getLocation()">
+
+                📍 Detect Location
+
+            </button>
+
+        </div>
+
+
+        <!-- AI RECOMMENDATION -->
+
+        <div class="glass quick-card">
+
+            <div class="quick-icon">
+                🤖
+            </div>
+
+            <h3>AI Recommendation</h3>
+
+            <p id="adviceBox">
+                Get today's smart irrigation advice
+            </p>
+
+            <button
+                class="quick-btn blue"
+                onclick="showAdvice()">
+
+                🌱 Get Recommendation
+
+            </button>
+
+        </div>
+
+
+        <!-- HISTORY -->
+
+        <div class="glass quick-card">
+
+            <div class="quick-icon">
+                📋
+            </div>
+
+            <h3>Prediction History</h3>
+
+            <p>
+                View previous irrigation predictions
+            </p>
+
+            <a href="/history">
+
+                <button class="quick-btn purple">
+                    📋 View History
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- WATER GRAPH -->
+
+        <div class="glass quick-card">
+
+            <div class="quick-icon">
+                📈
+            </div>
+
+            <h3>Water Analytics</h3>
+
+            <p>
+                Analyze crop-wise water requirements
+            </p>
+
+            <a href="/graph">
+
+                <button class="quick-btn orange">
+                    📈 View Water Graph
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+    <footer>
+
         🌱 Smart Irrigation System
-    </div>
 
-    <div class="menu">
-        <a href="/dashboard">Home</a>
-        <a href="/weather">Weather</a>
-        <a href="/speak">AI Assistant</a>
-        <a href="/">Logout</a>
-    </div>
+    </footer>
+
 
 </div>
 
-<h1>🌱 Farmer Dashboard</h1>
-<p id="datetime"></p>
-
-<div class="card">
-
-<h2>🙏 Welcome {{ name }} 👨‍🌾</h2>
-
-<p>Login Successful ✅</p>
-
-<h3>🌦️ Live Weather</h3>
-<div id="weatherIcon" style="font-size:70px;">
-☀️
-</div>
-
-<div class="weather-cards">
-
-    <div class="weather-card">
-        🌡️
-        <h3>{{ temperature }} °C</h3>
-        <p>Temperature</p>
-    </div>
-
-    <div class="weather-card">
-        💧
-        <h3>{{ humidity }} %</h3>
-        <p>Humidity</p>
-    </div>
-
-    <div class="weather-card">
-        ☁️
-        <h3>{{ weather }}</h3>
-        <p>Weather</p>
-    </div>
-    <div class="weather-cards">
-
-    <div class="weather-card">
-        🌱
-        <h3>62 %</h3>
-        <p>Soil Moisture</p>
-    </div>
-
-    <div class="weather-card">
-        🚰
-        <h3>ON</h3>
-        <p>Irrigation</p>
-    </div>
-
-    <div class="weather-card">
-        🌾
-        <h3>Healthy</h3>
-        <p>Crop Status</p>
-    </div>
-
-</div>
-
-</div>
-
-<h3>🤖 AI Advice</h3>
-
-<p>{{ advice }}</p>
-<h3>💧 Soil Moisture</h3>
-
-<progress value="65" max="100" style="width:250px;height:25px;"></progress>
-
-<p>65% Moisture Available</p>
-
-<hr>
-
-<form action="/crop" method="POST">
-
-<select name="crop">
-
-<option value="Wheat">🌾 Wheat</option>
-
-<option value="Rice">🌾 Rice</option>
-
-<option value="Maize">🌽 Maize</option>
-
-<option value="Potato">🥔 Potato</option>
-
-</select>
-
-<br><br>
-
-<img id="cropImage"
-src="{{ url_for('static', filename='images/wheat.png') }}"
-width="180"
-style="border-radius:15px; box-shadow:0 5px 15px gray;">
-
-<br><br>
-
-<button type="submit">Next</button>
-
-</form>
-
-<br><br>
-
-<a href="/speak">
-    <button>🎤 Speak</button>
-</a>
-
-<a href="/weather">
-    <button>🌦️ Weather</button>
-</a>
-
-<button onclick="getLocation()">📍 Location</button>
-
-<a href="/history">
-    <button>📊 Prediction History</button>
-</a>
-
-<a href="/graph">
-    <button>📈 Water Graph</button>
-</a>
-
-<p id="location"></p>
-
-<br><br>
-
-<button onclick="showAdvice()">Get Today's Recommendation</button>
-
-<p id="adviceBox"></p>
-
-</div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <script>
 
-function getLocation() {
+AOS.init({
+    duration: 900,
+    once: true
+});
 
-    if (navigator.geolocation) {
+function updateTime() {
 
-        navigator.geolocation.getCurrentPosition(function(position) {
+    const now = new Date();
 
-            alert(
-                "Latitude: " + position.coords.latitude +
-                "\nLongitude: " + position.coords.longitude
-            );
+    const datetime =
+        document.getElementById("datetime");
 
-        });
+    if (datetime) {
 
-    } else {
-
-        alert("Location is not supported.");
+        datetime.innerHTML =
+            "📅 " +
+            now.toLocaleDateString() +
+            " | 🕒 " +
+            now.toLocaleTimeString();
 
     }
 
 }
 
-function showAdvice() {
-
-    document.getElementById("adviceBox").innerHTML =
-    "🌱 Aaj 20-30 minute sinchai karein. Mausam theek hai aur mitti me nami kam hai.";
-
-}
-const cropSelect = document.querySelector("select[name='crop']");
-const cropImage = document.getElementById("cropImage");
-
-cropSelect.addEventListener("change", function(){
-
-    let crop = this.value.toLowerCase();
-
-    cropImage.src = "/static/images/" + crop + ".png";
-
-});
-function updateTime() {
-    const now = new Date();
-
-    document.getElementById("datetime").innerHTML =
-        "📅 " + now.toLocaleDateString() +
-        " | 🕒 " + now.toLocaleTimeString();
-}
-
 setInterval(updateTime, 1000);
-updateTime();
 
+updateTime();
 let weather = "{{ weather }}";
 
-if (weather.includes("Cloud")) {
-    document.getElementById("weatherIcon").innerHTML = "☁️";
+const weatherIcon =
+    document.getElementById("weatherIcon");
+if (weatherIcon) {
+
+    if (weather.includes("Cloud")) {
+
+        weatherIcon.innerHTML = "☁️";
+    }
+    else if (weather.includes("Rain")) {
+
+        weatherIcon.innerHTML = "🌧️";
+
+    }
+    else if (weather.includes("Clear")) {
+        weatherIcon.innerHTML = "☀️";
+    }
+    else {
+
+        weatherIcon.innerHTML = "🌍";
+    }
 }
-else if (weather.includes("Rain")) {
-    document.getElementById("weatherIcon").innerHTML = "🌧️";
-}
-else if (weather.includes("Clear")) {
-    document.getElementById("weatherIcon").innerHTML = "☀️";
-}
-else {
-    document.getElementById("weatherIcon").innerHTML = "🌍";
+function showAdvice() {
+    const adviceBox = document.getElementById("adviceBox");
+
+    if (!adviceBox) return;
+
+    adviceBox.innerHTML = `
+        💧 <b>Smart Irrigation Advice</b><br><br>
+        🌱 Check the soil moisture before starting irrigation.<br>
+        ⏱️ 20–30 minutes of irrigation is recommended today.<br>
+        💦 Avoid over-irrigation to save water.
+    `;
 }
 </script>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 
 </html>
