@@ -23,32 +23,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet">
 
-
-    <!-- Font Awesome -->
-
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-
-    <!-- AOS -->
-
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css"
           rel="stylesheet">
-
-
-    <!-- Main CSS -->
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 
 
-    <!-- Dashboard CSS -->
-
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </head>
-
 
 <body>
 <div class="page-bg">
@@ -326,11 +314,14 @@
                 🌱 Medium Water Requirement
             </p>
 
-            <a href="/crop?crop=Wheat">
-                <button>
+            <form action="/crop" method="POST">
+                <input type="hidden" name="crop" value="Wheat">
+                <input type="hidden" name="name" value="{{ name }}">
+                
+                <button type="submit">
                     Select Crop
                 </button>
-            </a>
+            </form>
 
         </div>
 
@@ -349,12 +340,14 @@
                 💧 High Water Requirement
             </p>
 
-            <a href="/crop?crop=Rice">
-                <button>
+            <form action="/crop" method="POST">
+                <input type="hidden" name="crop" value="Rice">
+                <input type="hidden" name="name" value="{{ name }}">
+                
+                <button type="submit">
                     Select Crop
                 </button>
-            </a>
-
+            </form>
         </div>
 
 
@@ -372,11 +365,14 @@
                 🌿 Low Water Requirement
             </p>
 
-            <a href="/crop?crop=Maize">
-                <button>
+            <form action="/crop" method="POST">
+                <input type="hidden" name="crop" value="Maize">
+                <input type="hidden" name="name" value="{{ name }}">
+                
+                <button type="submit">
                     Select Crop
                 </button>
-            </a>
+            </form>
 
         </div>
 
@@ -395,14 +391,16 @@
                 🥔 Disease Detection Enabled
             </p>
 
-            <a href="/crop?crop=Potato">
-                <button>
+            <form action="/crop" method="POST">
+                <input type="hidden" name="crop" value="Potato">
+                <input type="hidden" name="name" value="{{ name }}">
+                
+                <button type="submit">
                     Select Crop
                 </button>
-            </a>
+            </form>
 
         </div>
-
 
     </div>
 

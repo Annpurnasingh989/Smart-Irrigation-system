@@ -101,7 +101,10 @@ def officer():
     # Average water requirement
     if len(data) > 0:
         avg_water = round(
-            sum(item.get("water_required", 0) for item in data) / len(data),
+            sum(
+                item.get("water_required", 0)
+                for item in data
+            ) / len(data),
             2
         )
     else:
@@ -118,7 +121,18 @@ def officer():
 
     # Recent predictions
     recent_predictions = list(
-        predictions.find().sort("_id", -1).limit(5)
+        predictions.find().sort("_id", -1).limit(10)
+    )
+    
+
+    low_humidity_count = sum(
+        1 for item in data
+        if item.get("humidity", 0) < 40
+    )
+
+    irrigation_count = sum(
+        1 for item in data
+        if item.get("humidity", 0) < 50
     )
 
     # Crop-wise statistics
@@ -167,18 +181,14 @@ def officer():
 
     return render_template(
         "officer.html",
-
         total_farmers=total_farmers,
-
         total_predictions=total_predictions,
-
         total_crops=total_crops,
-
         avg_water=avg_water,
-
         recent_predictions=recent_predictions,
-
-        crop_stats=crop_stats
+        crop_stats=crop_stats,
+        low_humidity_count=low_humidity_count,
+        irrigation_count=irrigation_count
     )
 
 @app.route("/all_farmers")
@@ -203,22 +213,26 @@ def research():
 def assistant():
     return render_template("assistant.html")
 
+
 @app.route("/crop", methods=["POST"])
 def crop():
 
     crop_name = request.form["crop"]
+
+    farmer_name = request.form.get("name", "Farmer")
+    farmer_mobile = request.form.get("mobile", "")
     
     temperature, humidity, weather, advice = get_weather()
 
-    # Crop Encoding
     crop_encoded = encoder.transform([crop_name])[0]
 
-    # ML Prediction
     prediction = model.predict([[temperature, humidity, crop_encoded]])
 
     water_required = round(prediction[0], 2)
 
     predictions.insert_one({
+        "farmer_name": farmer_name,
+        "farmer_mobile": farmer_mobile,
         "crop": crop_name,
         "temperature": temperature,
         "humidity": humidity,
@@ -250,7 +264,8 @@ def crop():
         crop=crop_name,
         fertilizer=fertilizer,
         irrigation=irrigation,
-        season=season
+        season=season,
+        farmer_name=farmer_name
     )
 
 @app.route("/speak")
