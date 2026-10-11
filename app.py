@@ -135,6 +135,33 @@ def officer():
         if item.get("humidity", 0) < 50
     )
 
+        # Dynamic AI Insights
+
+    if data:
+        avg_humidity = round(
+            sum(
+                item.get("humidity", 0)
+                for item in data
+            ) / len(data),
+            2
+        )
+
+        if avg_humidity < 40:
+            weather_insight = "Low humidity is being observed in monitored farms."
+        elif avg_humidity > 70:
+            weather_insight = "High humidity is being observed in monitored farms."
+        else:
+            weather_insight = "Weather conditions are within a normal humidity range."
+
+        if avg_water > 50:
+            crop_health = "Monitored crops may require higher irrigation based on current predictions."
+        else:
+            crop_health = "Current irrigation predictions indicate normal water requirements."
+
+    else:
+        weather_insight = "No weather data available yet."
+        crop_health = "No crop prediction data available yet."
+
     # Crop-wise statistics
     crop_stats = []
 
@@ -188,7 +215,9 @@ def officer():
         recent_predictions=recent_predictions,
         crop_stats=crop_stats,
         low_humidity_count=low_humidity_count,
-        irrigation_count=irrigation_count
+        irrigation_count=irrigation_count,
+        weather_insight=weather_insight,
+        crop_health=crop_health
     )
 
 @app.route("/all_farmers")
@@ -241,23 +270,81 @@ def crop():
 
     if crop_name == "Wheat":
         fertilizer = "Urea"
-        irrigation = f"{water_required} Liters"
         season = "Winter"
 
     elif crop_name == "Rice":
         fertilizer = "DAP"
-        irrigation = f"{water_required} Liters"
         season = "Monsoon"
 
     elif crop_name == "Maize":
         fertilizer = "NPK"
-        irrigation = f"{water_required} Liters"
         season = "Summer"
 
-    else:
+    elif crop_name == "Potato":
         fertilizer = "Potash"
-        irrigation = f"{water_required} Liters"
         season = "Winter"
+
+    elif crop_name == "Tomato":
+        fertilizer = "NPK"
+        season = "Summer"
+
+    elif crop_name == "Cotton":
+        fertilizer = "Urea"
+        season = "Summer"
+
+    elif crop_name == "Sugarcane":
+        fertilizer = "NPK"
+        season = "Summer"
+
+    elif crop_name == "Mustard":
+        fertilizer = "Urea"
+        season = "Winter"
+
+    elif crop_name == "Groundnut":
+        fertilizer = "NPK"
+        season = "Summer"
+
+    elif crop_name == "Barley":
+        fertilizer = "Urea"
+        season = "Winter"
+
+    elif crop_name == "Chickpea":
+        fertilizer = "DAP"
+        season = "Winter"
+
+    elif crop_name == "Soybean":
+        fertilizer = "NPK"
+        season = "Summer"
+
+    elif crop_name == "Onion":
+        fertilizer = "NPK"
+        season = "Winter"
+
+    elif crop_name == "Peas":
+        fertilizer = "DAP"
+        season = "Winter"
+
+    elif crop_name == "Cabbage":
+        fertilizer = "NPK"
+        season = "Winter"
+
+    elif crop_name == "Carrot":
+        fertilizer = "NPK"
+        season = "Winter"
+
+    elif crop_name == "Chili":
+        fertilizer = "NPK"
+        season = "Summer"
+
+    elif crop_name == "Lentil":
+        fertilizer = "DAP"
+        season = "Winter"
+
+    else:
+        fertilizer = "NPK"
+        season = "Summer"
+
+    irrigation = f"{water_required} Liters"
 
     return render_template(
         "crop.html",

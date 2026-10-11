@@ -1069,7 +1069,124 @@
 </div>
 
     </section>
+    <section class="glass rounded-3xl p-7 mb-10">
 
+    <div class="flex items-center gap-4 mb-6">
+
+        <div
+            class="w-14 h-14
+                   rounded-2xl
+                   bg-green-500/70
+                   flex items-center
+                   justify-center
+                   text-2xl">
+
+            🌾
+
+        </div>
+
+        <div>
+
+            <h2 class="text-2xl font-bold">
+                Crop Statistics
+            </h2>
+
+            <p class="text-green-100 text-sm">
+                Crop-wise irrigation analysis
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="overflow-x-auto">
+
+        <table class="w-full text-left">
+
+            <thead>
+
+                <tr
+                    class="border-b
+                           border-white/20
+                           text-green-200">
+
+                    <th class="p-4">
+                        Crop
+                    </th>
+
+                    <th class="p-4">
+                        Predictions
+                    </th>
+
+                    <th class="p-4">
+                        Avg Water
+                    </th>
+
+                    <th class="p-4">
+                        Avg Temperature
+                    </th>
+
+                    <th class="p-4">
+                        Avg Humidity
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for item in crop_stats %}
+
+                <tr class="table-row">
+
+                    <td class="py-4 px-4">
+                        🌾 {{ item.crop }}
+                    </td>
+
+                    <td class="py-4 px-4">
+                        {{ item.predictions }}
+                    </td>
+
+                    <td class="py-4 px-4">
+                        💧 {{ item.avg_water }} L
+                    </td>
+
+                    <td class="py-4 px-4">
+                        🌡️ {{ item.avg_temperature }} °C
+                    </td>
+
+                    <td class="py-4 px-4">
+                        💦 {{ item.avg_humidity }} %
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="text-center py-8">
+
+                        No crop statistics available.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
     <section
         class="grid
                lg:grid-cols-2
@@ -1159,8 +1276,7 @@
                                text-green-100
                                mt-1">
 
-                        Rain probability is high
-                        in some monitored areas.
+                        {{ weather_insight }}
 
                     </p>
 
@@ -1183,8 +1299,7 @@
                                text-green-100
                                mt-1">
 
-                        Most monitored crops
-                        are currently healthy.
+                        {{ crop_health }}
 
                     </p>
 
@@ -1253,7 +1368,7 @@
                            border-red-300/20">
 
                     <b>
-                        🔴 Low Soil Moisture
+                        🔴 Low Humidity
                     </b>
 
                     <p
@@ -1262,7 +1377,7 @@
                             mt-1">
 
                         {{ low_humidity_count }}
-                        farms have low humidity below 40%.
+                        records have low humidity below 40%.
 
                     </p>
 
